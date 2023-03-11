@@ -1,6 +1,7 @@
 package com.safar.pccoehackathon.owner.ui;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.safar.pccoehackathon.LoginActivity;
 import com.safar.pccoehackathon.R;
 import com.safar.pccoehackathon.UserModel;
 import com.safar.pccoehackathon.databinding.FragmentOwnerProfileBinding;
@@ -52,6 +54,14 @@ public class OwnerProfileFragment extends Fragment {
                 messLocation = binding.tvLocation.getText().toString().trim();
 
                 createDialog(name, messName, phoneNumber, messLocation);
+            }
+        });
+
+        binding.btnProfileLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
 

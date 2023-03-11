@@ -7,19 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.safar.pccoehackathon.customer.ui.HomeFragment"
+        android:name="com.safar.pccoehackathon.customer.ui.CustomerHomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.safar.pccoehackathon.customer.ui.DashboardFragment"
+        android:name="com.safar.pccoehackathon.customer.ui.CustomerProfileFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.safar.pccoehackathon.customer.ui.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
