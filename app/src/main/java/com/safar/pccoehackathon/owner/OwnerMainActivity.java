@@ -31,7 +31,6 @@ public class OwnerMainActivity extends AppCompatActivity {
                 R.id.owner_navigation_customer, R.id.owner_navigation_food, R.id.owner_navigation_home, R.id.owner_navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_owner_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
