@@ -16,7 +16,13 @@
             android:id="@+id/llData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_for_owner_food"/>
+            <include layout="@layout/layout_for_owner_food"/>
+            <include layout="@layout/layout_for_owner_food"/>
+
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
