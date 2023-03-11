@@ -165,7 +165,7 @@
             app:backgroundTint="@color/orange"
             android:fontFamily="@font/poppins_semibold"
             android:padding="15dp"
-            android:text="Submit Dish"
+            android:text="Add Dish"
             android:textColor="@color/white"
             android:textSize="17dp" />
 
