@@ -52,6 +52,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
@@ -77,6 +78,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/tvMessName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
@@ -101,6 +103,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/tvPhoneNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
@@ -124,6 +127,7 @@
                         android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/tvLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
@@ -140,6 +144,7 @@
                     app:backgroundTint="@color/purple_200"
                     android:fontFamily="@font/poppins_semibold"
                     android:layout_marginBottom="15dp"
+                    android:textAllCaps="false"
                     android:layout_gravity="center_horizontal"
                     android:text="Edit Profile"
                     android:textColor="@color/white"
@@ -154,6 +159,7 @@
                     android:layout_marginBottom="15dp"
                     android:layout_gravity="center_horizontal"
                     android:text="Logout"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17dp" />
 

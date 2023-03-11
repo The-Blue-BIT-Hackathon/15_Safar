@@ -1,18 +1,40 @@
 package com.safar.pccoehackathon;
 
 public class UserModel {
-    private String name,messname,ownerphone,monthlyrate,email,password;
+    private String id, name, messname, ownerphone, monthlyrate, email, location;
 
-    public UserModel() {
+    public UserModel(String name, String messname, String ownerphone) {
+        this.name = name;
+        this.messname = messname;
+        this.ownerphone = ownerphone;
+        this.location = "NA";
     }
 
-    public UserModel(String name, String messname, String ownerphone, String monthlyrate, String email, String password) {
+    public UserModel(String id, String name, String messname, String ownerphone, String monthlyrate, String email) {
         this.name = name;
+        this.id = id;
         this.messname = messname;
         this.ownerphone = ownerphone;
         this.monthlyrate = monthlyrate;
         this.email = email;
-        this.password = password;
+    }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public UserModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -54,19 +76,6 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-
-
-
 
 }
 

@@ -17,32 +17,32 @@
         android:textSize="25dp" />
 
     <EditText
-        android:id="@+id/editProfileName"
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/editext_drawable"
         android:fontFamily="@font/poppins_medium"
-        android:hint="Fetch Name Here"
+        android:hint="Name"
         android:padding="16dp"
         android:layout_marginTop="20dp"/>
 
     <EditText
-        android:id="@+id/editProfileMessName"
+        android:id="@+id/etMessName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/editext_drawable"
         android:fontFamily="@font/poppins_medium"
-        android:hint="Fetch Mess Name Here"
+        android:hint="Mess Name"
         android:padding="16dp"
         android:layout_marginTop="20dp"/>
 
     <EditText
-        android:id="@+id/editProfileNumber"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/editext_drawable"
         android:fontFamily="@font/poppins_medium"
-        android:hint="Fetch Contact Number Here"
+        android:hint="Phone Number"
         android:padding="16dp"
         android:layout_marginTop="20dp"/>
 
@@ -53,19 +53,19 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editProfileLocation"
+            android:id="@+id/etLocation"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/editext_drawable"
             android:fontFamily="@font/poppins_medium"
-            android:hint="Location Here"
+            android:hint="Location"
             android:layout_marginRight="5dp"
             android:padding="16dp"
             />
 
         <Button
-            android:id="@+id/editProfileChangeLocation"
+            android:id="@+id/btnChangeLocation"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -75,13 +75,14 @@
             android:layout_marginBottom="15dp"
             android:layout_gravity="center_horizontal"
             android:text="Change"
+
             android:textColor="@color/white"
             android:textSize="17dp" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/editProfileSaveChanges"
+        android:id="@+id/btnSaveChanges"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

@@ -82,6 +82,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String id = createID();
                 String name = binding.etname.getText().toString();
                 String messname = binding.etmessname.getText().toString();
                 String ownerphone = binding.etphone.getText().toString();
@@ -100,8 +101,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 progressDialog.cancel();
 
                                 firebaseFirestore.collection("Owner")
-                                        .document(FirebaseAuth.getInstance().getUid())
-                                        .set(new UserModel(name,messname,ownerphone,monthlyrate,email,password));
+                                        .document(email)
+                                        .set(new UserModel(id,name,messname,ownerphone,monthlyrate,email));
 
                             }
                         })
@@ -117,10 +118,6 @@ public class OwnerSignUpActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         binding.btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +127,11 @@ public class OwnerSignUpActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-
+    public String createID() {
+        String id = "";
+        id = String.valueOf(System.currentTimeMillis());
+        return id;
     }
 }

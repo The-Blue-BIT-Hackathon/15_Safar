@@ -136,7 +136,7 @@ public class SignUpCustomer extends AppCompatActivity {
                                     progressDialog.cancel();
 
                                     firebaseFirestore.collection("Customer")
-                                            .document(FirebaseAuth.getInstance().getUid())
+                                            .document(email)
                                             .set(new UserModel1(name,customerphone,email,password,item));
 
                                 }

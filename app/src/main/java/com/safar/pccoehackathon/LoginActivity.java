@@ -21,7 +21,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.safar.pccoehackathon.databinding.ActivityLoginBinding;
+import com.safar.pccoehackathon.owner.OwnerMainActivity;
 import com.safar.pccoehackathon.owner.ui.OwnerHomeFragment;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,17 +32,21 @@ public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
     ProgressDialog progressDialog;
     FirebaseAuth auth;
+
+    FirebaseFirestore firebaseFirestore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         auth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setTitle("Login");
         progressDialog.setMessage("Please wait loading");
-
 
 
         binding.etemail.addTextChangedListener(new TextWatcher() {
@@ -59,19 +66,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if(Patterns.EMAIL_ADDRESS.matcher(binding.etemail.getText().toString()).matches())
-                {
+                if (Patterns.EMAIL_ADDRESS.matcher(binding.etemail.getText().toString()).matches()) {
                     Drawable drawable = ContextCompat.getDrawable(LoginActivity.this, R.drawable.baseline_check_circle_24);
                     drawable = DrawableCompat.wrap(drawable);
-                    drawable.setBounds( 0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 
                     binding.etemail.setCompoundDrawables(null, null, drawable, null);
-                }
-                else
-                {
+                } else {
                     Drawable drawable = ContextCompat.getDrawable(LoginActivity.this, R.drawable.baseline_check_circle_outline_24);
                     drawable = DrawableCompat.wrap(drawable);
-                    drawable.setBounds( 0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                     binding.etemail.setCompoundDrawables(null, null, drawable, null);
                 }
             }
@@ -86,26 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                 String password = binding.etpassword.getText().toString().trim();
 
                 progressDialog.show();
-                auth.signInWithEmailAndPassword(email,password)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
 
-                                progressDialog.cancel();
-                                Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, OwnerHomeFragment.class);
-                                startActivity(intent);
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.cancel();
-                                Toast.makeText(LoginActivity.this, "login unsuccessfully", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
+                signInWithEmailAndPassword(email, password);
             }
         });
 
@@ -133,12 +119,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
         binding.btnregistercustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,SignUpCustomer.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpCustomer.class);
                 startActivity(intent);
                 finish();
             }
@@ -147,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnregisterowner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,OwnerSignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, OwnerSignUpActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -155,4 +139,58 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    private void signInWithEmailAndPassword(String email, String pass) {
+        firebaseFirestore.collection("Customer")
+                .document(email)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            auth.signInWithEmailAndPassword(email, pass)
+                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                        @Override
+                                        public void onSuccess(AuthResult authResult) {
+                                            Toast.makeText(LoginActivity.this, "Yet to build", Toast.LENGTH_SHORT).show();
+                                            progressDialog.cancel();
+                                            finish();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            progressDialog.cancel();
+                                        }
+                                    });
+                        }
+                    }
+                });
+        firebaseFirestore.collection("Owner")
+                .document(email)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            auth.signInWithEmailAndPassword(email, pass)
+                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                        @Override
+                                        public void onSuccess(AuthResult authResult) {
+                                            startActivity(new Intent(LoginActivity.this, OwnerMainActivity.class));
+                                            progressDialog.cancel();
+                                            finish();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            progressDialog.cancel();
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+
 }
