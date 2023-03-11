@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/food_card_owner"/>
-            <include layout="@layout/food_card_owner"/>
-            <include layout="@layout/food_card_owner"/>
+            <include layout="@layout/layout_for_owner_food"/>
+            <include layout="@layout/layout_for_owner_food"/>
+            <include layout="@layout/layout_for_owner_food"/>
 
         </LinearLayout>
 
