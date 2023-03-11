@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnregistercustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,CustomerSignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this,Customer_Sign_Up.class);
                 startActivity(intent);
                 finish();
             }
