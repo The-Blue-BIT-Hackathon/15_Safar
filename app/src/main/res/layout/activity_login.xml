@@ -163,6 +163,7 @@
             android:text="Customer Register"
             android:textSize="16dp"
            android:textColor="@color/orange"
+            android:textAlignment="center"
             android:padding="10dp"
             android:fontFamily="@font/poppins_semibold"/>
 
@@ -174,6 +175,7 @@
             android:textSize="16dp"
             android:fontFamily="@font/poppins_semibold"
             android:padding="10dp"
+            android:textAlignment="center"
             android:textColor="@color/orange"
             android:layout_marginLeft="10dp"
             android:paddingLeft="10dp"/>
