@@ -40,7 +40,8 @@
         <activity
             android:name=".owner.OwnerMainActivity"
             android:exported="true"
-            android:label="@string/title_activity_owner_main" />
+            android:label="@string/title_activity_owner_main"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
