@@ -137,26 +137,25 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/button_drawable"
+                    app:backgroundTint="@color/purple_200"
                     android:fontFamily="@font/poppins_semibold"
                     android:layout_marginBottom="15dp"
                     android:layout_gravity="center_horizontal"
                     android:text="Edit Profile"
                     android:textColor="@color/white"
-                    android:textSize="14dp" />
+                    android:textSize="17dp" />
 
                 <Button
                     android:id="@+id/btnProfileLogout"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/button_drawable"
+                    android:backgroundTint="@color/orange"
                     android:fontFamily="@font/poppins_semibold"
                     android:layout_marginBottom="15dp"
                     android:layout_gravity="center_horizontal"
                     android:text="Logout"
                     android:textColor="@color/white"
-                    android:textSize="14dp" />
+                    android:textSize="17dp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
