@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="15dp"
         android:elevation="5dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/grey">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,31 +33,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Dish Title"
-                        android:textColor="@color/orange"
+                        android:text="Premium Dish"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="#320B01" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:orientation="horizontal">
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/orange"
-                        android:fontFamily="@font/poppins_semibold"
                         android:text="EDIT"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/poppins_semibold"/>
 
 
                 </LinearLayout>
@@ -65,100 +64,89 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp">
+                android:padding="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Shahi Paneer,Dry Soyabeen,3 chapati,dal and rice Onion,Papad"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Dish Name - "
-                    android:textColor="@color/orange"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Full Rice Plate"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Dish Contents - "
-                    android:textColor="@color/orange"
-                    android:textSize="15sp" />
 
                 <LinearLayout
-                    android:id="@+id/llContentData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:background="#320B01"
+                    android:gravity="center_horizontal"
+                    android:layout_marginRight="5dp"
+                    android:orientation="horizontal">
 
-                    <include layout="@layout/owner_food_content_delete_layout" />
-                    <include layout="@layout/owner_food_content_delete_layout" />
-                    <include layout="@layout/owner_food_content_delete_layout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Allergies-"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/poppins"
+                        android:text="No Allergies"/>
+
+
 
                 </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="#320B01"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/poppins"
+                        android:text="NON-VEG"/>
+
+
+
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:id="@+id/tvAllergies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Allergies - "
-                    android:textColor="@color/orange"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tvAllergies"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="No Allergies"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="20dp"
-                    android:fontFamily="@font/poppins"
-                    android:text="✅ VEG"
-                    android:textSize="15dp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:checked="true"
-                    android:fontFamily="@font/poppins"
-                    android:text="Glueten-Free"
-                    android:textSize="15sp" />
-
-            </RelativeLayout>
 
         </LinearLayout>
 

@@ -41,10 +41,11 @@
             android:name=".owner.OwnerMainActivity"
             android:exported="true"
             android:label="@string/title_activity_owner_main"
-            />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
         <meta-data
             android:name="preloaded_fonts"
