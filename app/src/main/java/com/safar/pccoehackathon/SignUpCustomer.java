@@ -122,39 +122,36 @@ public class SignUpCustomer extends AppCompatActivity {
                 String email = binding.etemail.getText().toString();
                 String password = binding.etpassword.getText().toString();
 
-                progressDialog.show();
 
-                auth.createUserWithEmailAndPassword(email,password)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                Intent intent = new Intent(SignUpCustomer.this,LoginActivity.class);
-                                startActivity(intent);
-                                progressDialog.cancel();
+                if(name.isEmpty() || customerphone.isEmpty() || email.isEmpty() || password.isEmpty()){
+                    Toast.makeText(SignUpCustomer.this, "Please enter complete information", Toast.LENGTH_LONG).show();
+                }else{
+                    progressDialog.show();
+                    auth.createUserWithEmailAndPassword(email,password)
+                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    Intent intent = new Intent(SignUpCustomer.this,LoginActivity.class);
+                                    startActivity(intent);
+                                    progressDialog.cancel();
 
-                                firebaseFirestore.collection("Customer")
-                                        .document(FirebaseAuth.getInstance().getUid())
-                                        .set(new UserModel1(name,customerphone,email,password,item));
+                                    firebaseFirestore.collection("Customer")
+                                            .document(FirebaseAuth.getInstance().getUid())
+                                            .set(new UserModel1(name,customerphone,email,password,item));
 
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SignUpCustomer.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                progressDialog.cancel();
-                            }
-                        });
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(SignUpCustomer.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    progressDialog.cancel();
+                                }
+                            });
+                }
 
             }
         });
-
-
-
-
-
-
-
 
 
 
