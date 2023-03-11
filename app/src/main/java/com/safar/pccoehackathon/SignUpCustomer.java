@@ -14,6 +14,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,6 +32,12 @@ public class SignUpCustomer extends AppCompatActivity {
     FirebaseAuth auth;
     ProgressDialog progressDialog;
     FirebaseFirestore firebaseFirestore;
+
+    String[] items = {"Veg","Non-Veg","Veg / Nog-Veg"};
+    String item;
+
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,19 @@ public class SignUpCustomer extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Register Now");
         progressDialog.setMessage("Please wait loading");
+
+
+
+        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item, items);
+        binding.actvPreference.setAdapter(adapterItems);
+
+        binding.actvPreference.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item = parent.getItemAtPosition(position).toString();
+
+            }
+        });
 
 
 
@@ -112,7 +134,7 @@ public class SignUpCustomer extends AppCompatActivity {
 
                                 firebaseFirestore.collection("Customer")
                                         .document(FirebaseAuth.getInstance().getUid())
-                                        .set(new UserModel1(name,customerphone,email,password));
+                                        .set(new UserModel1(name,customerphone,email,password,item));
 
                             }
                         })
@@ -121,12 +143,13 @@ public class SignUpCustomer extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(SignUpCustomer.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 progressDialog.cancel();
-
                             }
                         });
 
             }
         });
+
+
 
 
 
