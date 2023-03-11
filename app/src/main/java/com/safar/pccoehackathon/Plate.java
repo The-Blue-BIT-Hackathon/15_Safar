@@ -1,15 +1,17 @@
 package com.safar.pccoehackathon;
 
 public class Plate {
-    String plateName;
-    int price;
+    String plateName, type, allergies, glutenFree, price;
 
-    String id;
+    public Plate() {
+    }
 
-    public Plate(String id, String plateName, int price) {
+    public Plate(String plateName, String type, String allergies, String glutenFree, String price) {
         this.plateName = plateName;
+        this.type = type;
+        this.allergies = allergies;
+        this.glutenFree = glutenFree;
         this.price = price;
-        this.id = id;
     }
 
     public String getPlateName() {
@@ -20,19 +22,35 @@ public class Plate {
         this.plateName = plateName;
     }
 
-    public String getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getPrice() {
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getGlutenFree() {
+        return glutenFree;
+    }
+
+    public void setGlutenFree(String glutenFree) {
+        this.glutenFree = glutenFree;
+    }
+
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

@@ -2,6 +2,7 @@ package com.safar.pccoehackathon.owner.ui;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class OwnerProfileFragment extends Fragment {
     }
 
     private void getProfileData() {
+        Log.d("TAG", "getProfileData: "+firebaseAuth.getCurrentUser().getEmail());
         firebaseFirestore
                 .collection("Owner")
                 .document(firebaseAuth.getCurrentUser().getEmail())
@@ -71,6 +73,8 @@ public class OwnerProfileFragment extends Fragment {
                         messName = value.getString("messname");
                         phoneNumber = value.getString("ownerphone");
                         messLocation = value.getString("location");
+
+                        Log.d("TAG", "onEvent: "+name);
 
                         binding.tvName.setText(name);
                         binding.tvMessName.setText(messName);

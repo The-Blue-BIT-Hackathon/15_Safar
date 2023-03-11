@@ -41,7 +41,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/etAddFoodDishName"
+            android:id="@+id/etPlateName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/editext_drawable"
@@ -84,7 +84,7 @@
                 />
 
             <EditText
-                android:id="@+id/etAddFoodDishPrice"
+                android:id="@+id/etPlatePrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/editext_drawable"
@@ -126,7 +126,7 @@
                 >
 
                 <AutoCompleteTextView
-                    android:id="@+id/actvPreference"
+                    android:id="@+id/actvPlateType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -176,6 +176,7 @@
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/cbGlutenFree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gluten Free"
@@ -185,7 +186,7 @@
             />
 
         <Button
-            android:id="@+id/btnregister"
+            android:id="@+id/btnAddDish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -193,6 +194,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:padding="15dp"
             android:text="Add Dish"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17dp" />
 
