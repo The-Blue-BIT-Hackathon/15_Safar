@@ -18,18 +18,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/owner_food_layout"/>
-            <include layout="@layout/owner_food_layout"/>
-            <include layout="@layout/owner_food_layout"/>
-            <include layout="@layout/owner_food_layout"/>
-            <include layout="@layout/owner_food_layout"/>
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddPlate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -1,11 +1,15 @@
 package com.safar.pccoehackathon.owner.ui;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,36 +47,83 @@ public class OwnerFoodFragment extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
-//        displayPlate();
+        displayPlate();
+
+        binding.fabAddPlate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(getActivity());
+
+                dialog.setContentView(R.layout.owner_food_new_layout);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                EditText etPlateName, etPlatePrice;
+                AutoCompleteTextView actvPlateType, actvAllergies;
+                CheckBox cbGlutenFree;
+                Button btnAddDish;
+
+                etPlateName = dialog.findViewById(R.id.etPlateName);
+                etPlatePrice = dialog.findViewById(R.id.etPlatePrice);
+
+                actvPlateType = dialog.findViewById(R.id.actvPlateType);
+                actvAllergies = dialog.findViewById(R.id.actvAllergies);
+
+                cbGlutenFree = dialog.findViewById(R.id.cbGlutenFree);
+
+                btnAddDish = dialog.findViewById(R.id.btnAddDish);
+
+                btnAddDish.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                        String plateName, allergies, glutenFree, price, type;
+
+                        glutenFree = "No";
+
+                        plateName = etPlateName.getText().toString().trim();
+                        price = etPlatePrice.getText().toString().trim();
+                        allergies = actvAllergies.getText().toString().trim();
+                        if (cbGlutenFree.isChecked()) {
+                            glutenFree = "Yes";
+                        }
+                        type = actvPlateType.getText().toString().trim();
+
+                        addPlate(plateName, type, allergies, glutenFree, price);
+                    }
+                });
+                dialog.show();
+            }
+        });
 
         return binding.getRoot();
 
     }
 
-//    private void displayPlate() {
-//        firebaseFirestore
-//                .collection("Owner")
-//                .document(firebaseAuth.getCurrentUser().getEmail()) //edit
-//                .collection("plates")
-//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                        //String plateName, String type, String allergies, String glutenFree, String price
-//                        for (DocumentChange dc : value.getDocumentChanges()) {
-//                            String id = dc.getDocument().getId();
-//                            String plateName = dc.getDocument().getData().get("plateName").toString();
-//                            String type = dc.getDocument().getData().get("type").toString();
-//                            String allergies = dc.getDocument().getData().get("allergies").toString();
-//                            String glutenFree = dc.getDocument().getData().get("glutenFree").toString();
-//                            String price = dc.getDocument().getData().get("price").toString();
-//                            switch (dc.getType()) {
-//                                case ADDED:
-//                                    createCard(id, plateName, type, allergies, glutenFree, price);
-//                                    break;
-//                                case MODIFIED:
-////                                    updatePlate(id, plateName, type, allergies, glutenFree, price);
-//                                    break;
-//                                case REMOVED:
+    private void displayPlate() {
+        firebaseFirestore
+                .collection("Owner")
+                .document(firebaseAuth.getCurrentUser().getEmail())
+                .collection("plates")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        //String plateName, String type, String allergies, String glutenFree, String price
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            String id = dc.getDocument().getId();
+                            String plateName = dc.getDocument().getData().get("plateName").toString();
+                            String type = dc.getDocument().getData().get("type").toString();
+                            String allergies = dc.getDocument().getData().get("allergies").toString();
+                            String glutenFree = dc.getDocument().getData().get("glutenFree").toString();
+                            String price = dc.getDocument().getData().get("price").toString();
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    createCard(id, plateName, type, allergies, glutenFree, price);
+                                    break;
+                                case MODIFIED:
+//                                    updatePlate(id, plateName, type, allergies, glutenFree, price);
+                                    break;
+                                case REMOVED:
 //                                    for (int i = 0; i < binding.llData.getChildCount(); i++) {
 //
 //                                        TextView tvID = binding.llData.getChildAt(i).findViewById(R.id.tvID);
@@ -83,14 +134,14 @@ public class OwnerFoodFragment extends Fragment {
 //                                            binding.llData.removeView(binding.llData.getChildAt(i));
 //                                        }
 //                                    }
-//                                    break;
-//                            }
-//                        }
-//                    }
-//                });
-//    }
+                                    break;
+                            }
+                        }
+                    }
+                });
+    }
 
-    private void updatePlateData(String id, String plateName, String type, String allergies, String glutenFree, String price){
+    private void updatePlateData(String id, String plateName, String type, String allergies, String glutenFree, String price) {
         Map<String, Object> data = new HashMap<>();
         data.put("plateName", plateName);
         data.put("type", type);
@@ -139,7 +190,23 @@ public class OwnerFoodFragment extends Fragment {
 //    }
 
     private void createCard(String id, String plateName, String type, String allergies, String glutenFree, String price) {
-        View plateView = getLayoutInflater().inflate(R.layout.owner_plate_layout, null, false);
+        View plateView = getLayoutInflater().inflate(R.layout.owner_food_layout, null, false);
+
+        TextView tvDishName, tvID, tvContents, tvGluttenFree, tvAllergies, tvType;
+
+        tvID = plateView.findViewById(R.id.tvID);
+        tvDishName = plateView.findViewById(R.id.tvDishName);
+        tvContents = plateView.findViewById(R.id.tvContents);
+        tvGluttenFree = plateView.findViewById(R.id.tvGluttenFree);
+        tvAllergies = plateView.findViewById(R.id.tvAllergies);
+        tvType = plateView.findViewById(R.id.tvType);
+
+        tvID.setText(id);
+        tvDishName.setText(plateName);
+        tvContents.setText(id);
+        tvGluttenFree.setText(id);
+        tvAllergies.setText(id);
+        tvType.setText(type);
 
         binding.llData.addView(plateView);
     }
