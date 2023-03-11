@@ -12,9 +12,9 @@
         android:theme="@style/Theme.PCCOEHackathon"
         tools:targetApi="31">
         <activity
-            android:name=".Customer_Sign_Up"
+            android:name=".SignUpCustomer"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:exported="false"
@@ -36,7 +36,7 @@
         <activity
             android:name=".owner.OwnerMainActivity"
             android:exported="true"
-            android:label="@string/title_activity_owner_main"></activity>
+            android:label="@string/title_activity_owner_main" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
