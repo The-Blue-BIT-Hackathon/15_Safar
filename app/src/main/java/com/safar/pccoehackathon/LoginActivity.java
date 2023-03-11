@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.safar.pccoehackathon.customer.CustomerMainActivity;
 import com.safar.pccoehackathon.databinding.ActivityLoginBinding;
 import com.safar.pccoehackathon.owner.OwnerMainActivity;
 import com.safar.pccoehackathon.owner.ui.OwnerHomeFragment;
@@ -152,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
-                                            Toast.makeText(LoginActivity.this, "Yet to build", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(LoginActivity.this, CustomerMainActivity.class));
                                             progressDialog.cancel();
                                             finish();
                                         }
