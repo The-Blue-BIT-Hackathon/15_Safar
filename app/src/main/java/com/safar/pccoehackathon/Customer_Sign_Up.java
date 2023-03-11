@@ -6,28 +6,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.safar.pccoehackathon.databinding.ActivityCustomerSignUpBinding;
+import com.safar.pccoehackathon.databinding.ActivityCustomerSignUp2Binding;
 
-public class CustomerSignUpActivity extends AppCompatActivity {
+public class Customer_Sign_Up extends AppCompatActivity {
 
-
-    ActivityCustomerSignUpBinding binding;
+    ActivityCustomerSignUp2Binding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCustomerSignUpBinding.inflate(getLayoutInflater());
+        binding = ActivityCustomerSignUp2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
         binding.btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(CustomerSignUpActivity.this,LoginActivity.class);
+                Intent intent =new Intent(Customer_Sign_Up.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
 
     }
 }

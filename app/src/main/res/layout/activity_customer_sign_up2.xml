@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerSignUpActivity">
+    tools:context=".Customer_Sign_Up">
+
 
 
     <RelativeLayout
@@ -187,6 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="16dp" />
 
             <TextView
@@ -195,6 +197,7 @@
                 android:layout_height="wrap_content"
                 android:text="Login Now"
                 android:textSize="16dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="#fe724d"
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="10dp"/>
@@ -203,6 +206,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 
 
 
