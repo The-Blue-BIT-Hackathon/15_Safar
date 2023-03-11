@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
 
@@ -150,15 +154,16 @@
         android:id="@+id/linear_layout_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_above="@id/linear_layout_4"
+        android:layout_below="@id/linear_layout_3"
         android:paddingBottom="10dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up As Mess Owner"
+            android:text="Sign Up As Customer"
             android:textSize="16dp"
             android:textAlignment="center"
             android:fontFamily="@font/poppins_semibold"/>
@@ -183,7 +188,7 @@
         android:id="@+id/linear_layout_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/linear_layout_5"
         android:paddingBottom="10dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -191,7 +196,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up As Customer"
+            android:text="Sign Up As Owner"
             android:textSize="16dp"
             android:textAlignment="center"
             android:fontFamily="@font/poppins_semibold"/>
@@ -218,3 +223,5 @@
 
 
 </RelativeLayout>
+
+</ScrollView>
