@@ -2,20 +2,33 @@ package com.safar.pccoehackathon;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -23,12 +36,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.safar.pccoehackathon.databinding.ActivityOwnerSignUpBinding;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class OwnerSignUpActivity extends AppCompatActivity {
 
     ActivityOwnerSignUpBinding binding;
     FirebaseAuth auth;
     ProgressDialog progressDialog;
     FirebaseFirestore firebaseFirestore;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    private final static int REQUEST_CODE=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +55,13 @@ public class OwnerSignUpActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
+        binding.etlocation.setFocusable(false);
+        binding.etlocation.setEnabled(false);
+        binding.etlocation.setCursorVisible(false);
+        binding.etlocation.setKeyListener(null);
+
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -46,12 +72,10 @@ public class OwnerSignUpActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
 
             }
 
@@ -128,6 +152,72 @@ public class OwnerSignUpActivity extends AppCompatActivity {
             }
         });
 
+        binding.btngetlocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                 getLastLocation();
+
+            }
+        });
+
+    }
+
+    private void getLastLocation() {
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            fusedLocationProviderClient.getLastLocation()
+                    .addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+
+                            if(location!=null)
+                            {
+                                Geocoder geocoder = new Geocoder(OwnerSignUpActivity.this,Locale.getDefault());
+                                List<Address> addresses = null;
+                                try {
+                                    addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                                    binding.etlocation.setText(addresses.get(0).getAddressLine(0));
+                                } catch (IOException e)
+                                {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                    });
+        }
+        else
+        {
+            askPermission();
+        }
+
+    }
+
+    private void askPermission() {
+
+        ActivityCompat.requestPermissions(OwnerSignUpActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if(requestCode == REQUEST_CODE)
+        {
+            if(grantResults.length>0 &&  grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                getLastLocation();
+            }
+            else
+            {
+                Toast.makeText(this, "Please provide required Permission", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public String createID() {
@@ -135,4 +225,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
         id = String.valueOf(System.currentTimeMillis());
         return id;
     }
+
+
+
+
 }

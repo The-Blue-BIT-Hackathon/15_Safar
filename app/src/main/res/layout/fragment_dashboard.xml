@@ -197,6 +197,21 @@
             android:background="@drawable/button_drawable"/>
 
 
+        <Button
+            android:id="@+id/btnmakepayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Make payment"
+            android:layout_below="@id/btnProfileLogout"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_drawable"/>
+
+
 
 
     </RelativeLayout>
