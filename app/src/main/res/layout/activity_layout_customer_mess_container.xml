@@ -29,23 +29,23 @@
 
 
             <TextView
+                android:id="@+id/tvMessName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hotel Ranwara"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/black"
                 android:layout_weight="2"
                 android:textSize="17dp"/>
 
             <TextView
+                android:id="@+id/tvMonthlyPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price:2000"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/dark_grey"
-                android:textSize="15dp"/>
+                android:textSize="17dp"/>
 
 
         </LinearLayout>
@@ -71,10 +71,11 @@
                         android:paddingRight="10dp"/>
 
                     <TextView
+                        android:id="@+id/tvLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Wagholi" />
+                        />
 
                 </LinearLayout>
 
@@ -86,6 +87,7 @@
                     android:background="@color/orange">
 
                     <ImageView
+                        android:id="@+id/ivNext"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/baseline_navigate_next_24"

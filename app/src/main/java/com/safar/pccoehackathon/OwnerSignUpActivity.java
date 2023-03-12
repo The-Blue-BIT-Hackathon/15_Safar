@@ -47,6 +47,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseFirestore firebaseFirestore;
     FusedLocationProviderClient fusedLocationProviderClient;
+
+    String lat, lang;
     private final static int REQUEST_CODE=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +116,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                 String email = binding.etemail.getText().toString();
                 String password = binding.etpassword.getText().toString();
                 String monthlyPrice = binding.etMonthlyPrice.getText().toString();
+                String location = binding.etlocation.getText().toString();
 
                 progressDialog.show();
 
@@ -127,7 +130,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
 
                                 firebaseFirestore.collection("Owner")
                                         .document(email)
-                                        .set(new UserModel(id,name,messname,ownerphone,upi,email,monthlyPrice));
+                                        .set(new UserModel(id,name,messname,ownerphone,upi,email,monthlyPrice, location, lat, lang));
 
                             }
                         })
@@ -179,6 +182,9 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     binding.etlocation.setText(addresses.get(0).getAddressLine(0));
+                                    lat = String.valueOf(addresses.get(0).getLatitude());
+                                    lang = String.valueOf(addresses.get(0).getLongitude());
+
                                 } catch (IOException e)
                                 {
                                     e.printStackTrace();
