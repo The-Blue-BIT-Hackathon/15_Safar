@@ -47,6 +47,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseFirestore firebaseFirestore;
     FusedLocationProviderClient fusedLocationProviderClient;
+
+    String lat, lang;
     private final static int REQUEST_CODE=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,9 +115,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                 String upi = binding.etupi.getText().toString();
                 String email = binding.etemail.getText().toString();
                 String password = binding.etpassword.getText().toString();
-
-
-
+                String monthlyPrice = binding.etMonthlyPrice.getText().toString();
+                String location = binding.etlocation.getText().toString();
 
                 if (binding.etname.getText().toString().trim().isEmpty()) {
                     binding.etname.setError("Please Enter Name");
@@ -152,13 +153,16 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     Intent intent = new Intent(OwnerSignUpActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                    progressDialog.cancel();
+
 
                                     firebaseFirestore.collection("Owner")
                                             .document(email)
-                                            .set(new UserModel(id, name, messname, ownerphone, upi, email));
+                                            .set(new UserModel(id, name, messname, ownerphone, upi, email, monthlyPrice, location, lat, lang));
 
+                                    //(String id, String name, String messname, String ownerphone, String upi, String email, String monthlyPrice, String location, String lat, String lang)
+
+                                    startActivity(intent);
+                                    progressDialog.cancel();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -210,6 +214,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     binding.etlocation.setText(addresses.get(0).getAddressLine(0));
+                                    lat = String.valueOf(addresses.get(0).getLatitude());
+                                    lang = String.valueOf(addresses.get(0).getLongitude());
 
                                 } catch (IOException e)
                                 {

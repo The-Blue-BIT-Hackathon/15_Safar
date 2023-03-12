@@ -128,9 +128,6 @@
                     <include layout="@layout/layout_customer_mess_dish_info"/>
                     <include layout="@layout/layout_customer_mess_dish_info"/>
 
-
-
-
                 </LinearLayout>
 
 
