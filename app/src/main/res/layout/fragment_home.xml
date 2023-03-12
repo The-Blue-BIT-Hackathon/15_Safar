@@ -19,27 +19,32 @@
         android:elevation="10dp"
         android:paddingStart="15dp">
 
-        <ImageView
-            android:id="@+id/ivSearch"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/magnify" />
+<!--        <ImageView-->
+<!--            android:id="@+id/ivSearch"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:src="@drawable/magnify" />-->
 
-        <AutoCompleteTextView
-            android:id="@+id/etSearch"
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/etSearch"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_toStartOf="@+id/ivSearch"-->
+<!--            android:background="@null"-->
+<!--            android:hint="Search Location Here"-->
+<!--            android:imeOptions="actionSearch"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15sp" />-->
+
+        <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/ivSearch"
-            android:background="@null"
-            android:hint="Search Location Here"
-            android:imeOptions="actionSearch"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"
+            android:id="@+id/search_view"/>
 
 
     </RelativeLayout>
@@ -144,6 +149,8 @@
 
 
 
+
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -155,6 +162,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:orientation="vertical" >
+
 
             <include layout="@layout/activity_layout_customer_mess_container"/>
             <include layout="@layout/activity_layout_customer_mess_container"/>
