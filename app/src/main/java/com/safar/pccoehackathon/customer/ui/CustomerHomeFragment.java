@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -110,18 +111,18 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
         View messView = getLayoutInflater().inflate(R.layout.activity_layout_customer_mess_container, null, false);
 
         TextView tvMessName, tvMonthlyPrice, tvLocation;
-        ImageView ivNext;
+        LinearLayout llView;
 
         tvMessName = messView.findViewById(R.id.tvMessName);
         tvMonthlyPrice = messView.findViewById(R.id.tvMonthlyPrice);
         tvLocation = messView.findViewById(R.id.tvLocation);
-        ivNext = messView.findViewById(R.id.ivNext);
+        llView = messView.findViewById(R.id.llView);
 
         tvMessName.setText(messname);
         tvMonthlyPrice.setText(monthlyPrice);
         tvLocation.setText(location);
 
-        ivNext.setOnClickListener(new View.OnClickListener() {
+        llView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), CustomerMessInfoActivity.class));
