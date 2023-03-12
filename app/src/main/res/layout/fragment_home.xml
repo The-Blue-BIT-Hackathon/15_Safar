@@ -8,140 +8,107 @@
     tools:context=".customer.ui.CustomerHomeFragment">
 
 
-    <RelativeLayout
-        android:id="@+id/relLayout1"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/round_corner"
-        android:elevation="10dp"
-        android:paddingStart="15dp">
-
-        <ImageView
-            android:id="@+id/ivSearch"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/magnify" />
-
-        <AutoCompleteTextView
-            android:id="@+id/etSearch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/ivSearch"
-            android:background="@null"
-            android:hint="Search Location Here"
-            android:imeOptions="actionSearch"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Filter"
+        android:fontFamily="@font/poppins"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:paddingTop="10dp"
+        android:paddingRight="20dp"
         android:paddingBottom="10dp"
-        android:fontFamily="@font/poppins"/>
+        android:text="Filter" />
 
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp">
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_drawable"
+                android:fontFamily="@font/poppins"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
                 android:text="Veg"
-                android:background="@drawable/button_drawable"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins"/>
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Non-Veg"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/button_drawable"
-                android:paddingRight="20dp"
+                android:fontFamily="@font/poppins"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
+                android:text="Non-Veg"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:fontFamily="@font/poppins"/>
+                android:background="@drawable/button_drawable"
+                android:fontFamily="@font/poppins"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                android:text="Premium"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/button_drawable"
-                    android:fontFamily="@font/poppins"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="5dp"
-                    android:text="Premium"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_drawable"
+                android:fontFamily="@font/poppins"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                android:text="Non-Veg"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Non-Veg"
-                    android:background="@drawable/button_drawable"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/poppins"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_drawable"
+                android:fontFamily="@font/poppins"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                android:text="Allergies Free"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Allergies Free"
-                    android:background="@drawable/button_drawable"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/poppins"/>
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-
+    </HorizontalScrollView>
 
 
     <androidx.core.widget.NestedScrollView

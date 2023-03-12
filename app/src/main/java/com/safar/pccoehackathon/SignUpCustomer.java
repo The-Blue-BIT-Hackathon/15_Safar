@@ -27,7 +27,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.safar.pccoehackathon.databinding.ActivitySignUpCustomerBinding;
 
 public class SignUpCustomer extends AppCompatActivity {
-
     ActivitySignUpCustomerBinding binding;
     FirebaseAuth auth;
     ProgressDialog progressDialog;

@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/owner_navigation_home">
-
-    <fragment
-        android:id="@+id/owner_navigation_home"
-        android:name="com.safar.pccoehackathon.owner.ui.OwnerHomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_owner_home" />
+    app:startDestination="@+id/owner_navigation_food">
 
     <fragment
         android:id="@+id/owner_navigation_profile"

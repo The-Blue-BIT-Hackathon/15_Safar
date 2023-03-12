@@ -12,7 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -26,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.safar.pccoehackathon.customer.CustomerMainActivity;
 import com.safar.pccoehackathon.databinding.ActivityLoginBinding;
 import com.safar.pccoehackathon.owner.OwnerMainActivity;
-import com.safar.pccoehackathon.owner.ui.OwnerHomeFragment;
 
 public class LoginActivity extends AppCompatActivity {
 

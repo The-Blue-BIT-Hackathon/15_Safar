@@ -18,7 +18,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:outlineAmbientShadowColor="@color/black"
         app:itemTextColor="@color/black"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="@color/orange"
         app:menu="@menu/bottom_nav_menu" />
 
     <fragment

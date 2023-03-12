@@ -9,22 +9,17 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -48,7 +43,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     FusedLocationProviderClient fusedLocationProviderClient;
 
-    String lat, lang;
+    double lat, lang;
     private final static int REQUEST_CODE=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,8 +209,8 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     binding.etlocation.setText(addresses.get(0).getAddressLine(0));
-                                    lat = String.valueOf(addresses.get(0).getLatitude());
-                                    lang = String.valueOf(addresses.get(0).getLongitude());
+                                    lat = addresses.get(0).getLatitude();
+                                    lang = addresses.get(0).getLongitude();
 
                                 } catch (IOException e)
                                 {

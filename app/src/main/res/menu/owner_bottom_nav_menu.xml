@@ -12,11 +12,6 @@
         android:title="Customer" />
 
     <item
-        android:id="@+id/owner_navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
-
-    <item
         android:id="@+id/owner_navigation_profile"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Profile" />
