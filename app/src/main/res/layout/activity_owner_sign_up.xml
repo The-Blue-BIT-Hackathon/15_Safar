@@ -113,14 +113,13 @@
                 android:padding="16dp" />
 
             <EditText
-                android:id="@+id/etrate"
+                android:id="@+id/etupi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/editext_drawable"
                 android:fontFamily="@font/poppins_medium"
-                android:hint="Monthly Rate"
-                android:inputType="phone"
+                android:hint="UPI ID"
                 android:padding="16dp" />
 
 

@@ -1,7 +1,7 @@
 package com.safar.pccoehackathon;
 
 public class UserModel {
-    private String id, name, messname, ownerphone, monthlyrate, email, location;
+    private String id, name, messname, ownerphone, upi, email, location, totalCustomer, remainingPayment;
 
     public UserModel(String name, String messname, String ownerphone) {
         this.name = name;
@@ -10,13 +10,31 @@ public class UserModel {
         this.location = "NA";
     }
 
-    public UserModel(String id, String name, String messname, String ownerphone, String monthlyrate, String email) {
+    public String getTotalCustomer() {
+        return totalCustomer;
+    }
+
+    public void setTotalCustomer(String totalCustomer) {
+        this.totalCustomer = totalCustomer;
+    }
+
+    public String getRemainingPayment() {
+        return remainingPayment;
+    }
+
+    public void setRemainingPayment(String remainingPayment) {
+        this.remainingPayment = remainingPayment;
+    }
+
+    public UserModel(String id, String name, String messname, String ownerphone, String upi, String email) {
         this.name = name;
         this.id = id;
         this.messname = messname;
         this.ownerphone = ownerphone;
-        this.monthlyrate = monthlyrate;
+        this.upi = upi;
         this.email = email;
+        this.totalCustomer = "0";
+        this.remainingPayment = "0";
     }
     public String getLocation() {
         return location;
@@ -61,14 +79,6 @@ public class UserModel {
         this.ownerphone = ownerphone;
     }
 
-    public String getMonthlyrate() {
-        return monthlyrate;
-    }
-
-    public void setMonthlyrate(String monthlyrate) {
-        this.monthlyrate = monthlyrate;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -77,5 +87,12 @@ public class UserModel {
         this.email = email;
     }
 
+    public String getUpi() {
+        return upi;
+    }
+
+    public void setUpi(String upi) {
+        this.upi = upi;
+    }
 }
 
