@@ -86,7 +86,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                 String name = binding.etname.getText().toString();
                 String messname = binding.etmessname.getText().toString();
                 String ownerphone = binding.etphone.getText().toString();
-                String monthlyrate = binding.etrate.getText().toString();
+                String upi = binding.etupi.getText().toString();
                 String email = binding.etemail.getText().toString();
                 String password = binding.etpassword.getText().toString();
 
@@ -102,7 +102,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
 
                                 firebaseFirestore.collection("Owner")
                                         .document(email)
-                                        .set(new UserModel(id,name,messname,ownerphone,monthlyrate,email));
+                                        .set(new UserModel(id,name,messname,ownerphone,upi,email));
 
                             }
                         })

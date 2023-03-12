@@ -1,17 +1,35 @@
 package com.safar.pccoehackathon;
 
 public class Plate {
-    String plateName, type, allergies, glutenFree, price;
+    String plateName, type, allergies, glutenFree, price, contents, available;
 
     public Plate() {
     }
 
-    public Plate(String plateName, String type, String allergies, String glutenFree, String price) {
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    public Plate(String plateName, String type, String allergies, String glutenFree, String price, String contents) {
         this.plateName = plateName;
         this.type = type;
         this.allergies = allergies;
         this.glutenFree = glutenFree;
         this.price = price;
+        this.contents = contents;
+        this.available = "Yes";
     }
 
     public String getPlateName() {
