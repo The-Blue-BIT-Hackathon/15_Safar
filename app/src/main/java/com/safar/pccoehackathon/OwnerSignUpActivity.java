@@ -114,31 +114,63 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                 String email = binding.etemail.getText().toString();
                 String password = binding.etpassword.getText().toString();
 
-                progressDialog.show();
 
-                auth.createUserWithEmailAndPassword(email,password)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                Intent intent = new Intent(OwnerSignUpActivity.this,LoginActivity.class);
-                                startActivity(intent);
-                                progressDialog.cancel();
 
-                                firebaseFirestore.collection("Owner")
-                                        .document(email)
-                                        .set(new UserModel(id,name,messname,ownerphone,upi,email));
 
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(OwnerSignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                progressDialog.cancel();
+                if (binding.etname.getText().toString().trim().isEmpty()) {
+                    binding.etname.setError("Please Enter Name");
+                } else if (binding.etmessname.getText().toString().trim().isEmpty()) {
+                    binding.etmessname.setError("Please Enter Mess name");
+                } else if (binding.etphone.getText().toString().trim().isEmpty())
+                {
+                    binding.etphone.setError("Please Enter phone");
+                }
+                else if(binding.etphone.getText().length()!=10)
+                {
+                    Toast.makeText(OwnerSignUpActivity.this, "Enter valid Mobile number", Toast.LENGTH_SHORT).show();
+                }
+                else if (binding.etupi.getText().toString().trim().isEmpty()) {
+                    binding.etupi.setError("Please Enter upi ID");
+                } else if (binding.etemail.getText().toString().trim().isEmpty()) {
+                    binding.etemail.setError("Please Enter email");
+                } else if (binding.etpassword.getText().toString().trim().isEmpty())
+                {
+                    binding.etpassword.setError("Please Enter password");
+                }
+                else if(binding.etpassword.getText().length()<6)
+                {
+                    binding.etpassword.setError("Password must be greater than 6 character");
+                }
+                else if(binding.etlocation.getText().toString().trim().isEmpty())
+                {
+                    Toast.makeText(OwnerSignUpActivity.this, "Select your location first!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    progressDialog.show();
+                    auth.createUserWithEmailAndPassword(email, password)
+                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    Intent intent = new Intent(OwnerSignUpActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                    progressDialog.cancel();
 
-                            }
-                        });
+                                    firebaseFirestore.collection("Owner")
+                                            .document(email)
+                                            .set(new UserModel(id, name, messname, ownerphone, upi, email));
 
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(OwnerSignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    progressDialog.cancel();
+
+                                }
+                            });
+
+                }
             }
         });
 
@@ -178,6 +210,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                                     binding.etlocation.setText(addresses.get(0).getAddressLine(0));
+
                                 } catch (IOException e)
                                 {
                                     e.printStackTrace();
