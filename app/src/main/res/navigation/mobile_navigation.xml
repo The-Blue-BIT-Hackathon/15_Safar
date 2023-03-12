@@ -17,4 +17,10 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
+    <fragment
+        android:id="@+id/navigation_diet"
+        android:name="com.safar.pccoehackathon.customer.ui.CustomerDietFragment"
+        android:label="Customer Diet"
+        tools:layout="@layout/fragment_customer_diet" />
+
 </navigation>

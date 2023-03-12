@@ -46,14 +46,15 @@ public class OwnerProfileFragment extends Fragment {
         binding.btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name, messName, phoneNumber, messLocation;
+                String name, messName, phoneNumber, messLocation, upi;
 
                 name = binding.tvName.getText().toString().trim();
                 messName = binding.tvMessName.getText().toString().trim();
                 phoneNumber = binding.tvPhoneNumber.getText().toString().trim();
                 messLocation = binding.tvLocation.getText().toString().trim();
+                upi = binding.tvUPI.getText().toString().trim();
 
-                createDialog(name, messName, phoneNumber, messLocation);
+                createDialog(name, messName, phoneNumber, messLocation, upi);
             }
         });
 
@@ -62,6 +63,7 @@ public class OwnerProfileFragment extends Fragment {
             public void onClick(View view) {
                 firebaseAuth.signOut();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
             }
         });
 
@@ -77,12 +79,13 @@ public class OwnerProfileFragment extends Fragment {
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        String name, messName, phoneNumber, messLocation;
+                        String name, messName, phoneNumber, messLocation, upi;
 
                         name = value.getString("name");
                         messName = value.getString("messname");
                         phoneNumber = value.getString("ownerphone");
                         messLocation = value.getString("location");
+                        upi = value.getString("upi");
 
                         Log.d("TAG", "onEvent: "+name);
 
@@ -90,17 +93,18 @@ public class OwnerProfileFragment extends Fragment {
                         binding.tvMessName.setText(messName);
                         binding.tvPhoneNumber.setText(phoneNumber);
                         binding.tvLocation.setText(messLocation);
+                        binding.tvUPI.setText(upi);
                     }
                 });
     }
 
-    private void createDialog(String name, String messName, String ownerphone, String messLocation) {
+    private void createDialog(String name, String messName, String ownerphone, String messLocation, String upi) {
         Dialog dialog = new Dialog(getActivity());
 
         dialog.setContentView(R.layout.owner_profile_edit_layout);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        EditText etName, etMessName, etPhoneNumber, etLocation;
+        EditText etName, etMessName, etPhoneNumber, etLocation, etUPI;
         Button btnChangeLocation, btnSaveChanges;
 
         btnSaveChanges = dialog.findViewById(R.id.btnSaveChanges);
@@ -110,12 +114,14 @@ public class OwnerProfileFragment extends Fragment {
         etMessName = dialog.findViewById(R.id.etMessName);
         etPhoneNumber = dialog.findViewById(R.id.etPhoneNumber);
         etLocation = dialog.findViewById(R.id.etLocation);
+        etUPI = dialog.findViewById(R.id.etUPI);
 
         etName.setText(name);
         etMessName.setText(messName);
         etPhoneNumber.setText(ownerphone);
         etLocation.setText(messLocation);
-        
+        etUPI.setText(upi);
+
         btnChangeLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +138,7 @@ public class OwnerProfileFragment extends Fragment {
                 data.put("messname", etMessName.getText().toString().trim());
                 data.put("ownerphone", etPhoneNumber.getText().toString().trim());
                 data.put("location", etLocation.getText().toString().trim());
+                data.put("upi", etUPI.getText().toString().trim());
 
                 firebaseFirestore
                         .collection("Owner")

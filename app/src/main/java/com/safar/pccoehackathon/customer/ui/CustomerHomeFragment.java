@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +20,13 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.safar.pccoehackathon.R;
 import com.safar.pccoehackathon.customer.CustomerMessInfoActivity;
@@ -43,8 +46,6 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
 
         firebaseFirestore = FirebaseFirestore.getInstance();
-
-        binding.searchView.setQueryHint("Search Your Location");
 
         getAllOwners();
 
@@ -77,9 +78,6 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
             }
         });
 
-        firebaseFirestore = FirebaseFirestore.getInstance();
-
-        getAllOwners();
 
         return binding.getRoot();
 
@@ -87,8 +85,7 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
 
 
     private void getAllOwners() {
-
-        Log.d("TAG", "getAllOwners: " + "hi");
+        Log.d("TAG", "getAllOwners: ");
         firebaseFirestore
                 .collection("Owner")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -96,37 +93,90 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             String id = dc.getDocument().getId();
-                            Log.d("TAG", "onEvent: " + id);
                             String messname = dc.getDocument().getData().get("messname").toString();
                             String location = dc.getDocument().getData().get("location").toString();
                             String monthlyPrice = dc.getDocument().getData().get("monthlyPrice").toString();
+                            String email = dc.getDocument().getData().get("email").toString();
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    Log.d("TAG", "onEvent: " + "ADDED");
+                                    createCard(id, messname, location, monthlyPrice, email);
+                                    break;
+                                case MODIFIED:
+                                    Log.d("TAG", "onEvent: " + "MODIFIED");
+                                    updateCard(id, messname, location, monthlyPrice, email);
+                                    break;
+                                case REMOVED:
+                                    Log.d("TAG", "onEvent: " + "ADDED");
+                                    for (int i = 0; i < binding.llData.getChildCount(); i++) {
 
-                            createCard(id, messname, location, monthlyPrice);
+                                        TextView tvID = binding.llData.getChildAt(i).findViewById(R.id.tvID);
+
+                                        String firebase_id = tvID.getText().toString().trim();
+
+                                        if (firebase_id.equals(id)) {
+                                            binding.llData.removeView(binding.llData.getChildAt(i));
+                                        }
+                                    }
+                                    break;
+                            }
+
                         }
                     }
                 });
 
     }
 
-    private void createCard(String id, String messname, String location, String monthlyPrice) {
+    private void updateCard(String id, String messname, String location, String monthlyPrice, String email) {
+        for (int i = 0; i < binding.llData.getChildCount(); i++) {
+            TextView tvMessName, tvMonthlyPrice, tvLocation, tvMail, tvID;
+
+            tvID = binding.llData.findViewById(R.id.tvID);
+            tvMessName = binding.llData.findViewById(R.id.tvMessName);
+            tvMonthlyPrice = binding.llData.findViewById(R.id.tvMonthlyPrice);
+            tvLocation = binding.llData.findViewById(R.id.tvLocation);
+            tvMail = binding.llData.findViewById(R.id.tvMail);
+
+
+            if (tvID.getText().toString().trim().equals(id)) {
+                tvID.setText(id);
+                tvMessName.setText(messname);
+                tvMonthlyPrice.setText(monthlyPrice);
+                tvLocation.setText(location);
+                tvMail.setText(email);
+
+            }
+
+        }
+
+    }
+
+    private void createCard(String id, String messname, String location, String monthlyPrice, String email) {
         View messView = getLayoutInflater().inflate(R.layout.activity_layout_customer_mess_container, null, false);
 
-        TextView tvMessName, tvMonthlyPrice, tvLocation;
-        TextView ivNext;
+        TextView tvMessName, tvMonthlyPrice, tvLocation, tvMail, tvID;
+        LinearLayout llView;
 
+        tvID = messView.findViewById(R.id.tvID);
         tvMessName = messView.findViewById(R.id.tvMessName);
         tvMonthlyPrice = messView.findViewById(R.id.tvMonthlyPrice);
         tvLocation = messView.findViewById(R.id.tvLocation);
-        ivNext = messView.findViewById(R.id.ivNext);
+        tvMail = messView.findViewById(R.id.tvMail);
 
+        llView = messView.findViewById(R.id.llView);
+
+        tvID.setText(id);
         tvMessName.setText(messname);
         tvMonthlyPrice.setText(monthlyPrice);
         tvLocation.setText(location);
+        tvMail.setText(email);
 
-        ivNext.setOnClickListener(new View.OnClickListener() {
+        llView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CustomerMessInfoActivity.class));
+                Intent intent = new Intent(getActivity(), CustomerMessInfoActivity.class);
+                intent.putExtra("email", email);
+                startActivity(intent);
             }
         });
 
