@@ -44,6 +44,8 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        binding.searchView.setQueryHint("Search Your Location");
+
         getAllOwners();
 
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -110,7 +112,7 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
         View messView = getLayoutInflater().inflate(R.layout.activity_layout_customer_mess_container, null, false);
 
         TextView tvMessName, tvMonthlyPrice, tvLocation;
-        ImageView ivNext;
+        TextView ivNext;
 
         tvMessName = messView.findViewById(R.id.tvMessName);
         tvMonthlyPrice = messView.findViewById(R.id.tvMonthlyPrice);
