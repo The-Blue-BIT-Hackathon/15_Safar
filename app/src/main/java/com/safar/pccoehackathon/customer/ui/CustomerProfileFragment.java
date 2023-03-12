@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -156,6 +157,7 @@ public class CustomerProfileFragment extends Fragment {
                         String name = value.getString("name");
                         String item = value.getString("item");
                         String customerphone = value.getString("customerphone");
+
 
                         binding.tvName.setText(name);
                         binding.tvPreference.setText(item);

@@ -37,6 +37,17 @@
         android:layout_marginTop="20dp"/>
 
     <EditText
+        android:id="@+id/etUPI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/editext_drawable"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="UPI"
+        android:padding="16dp"
+        android:layout_marginTop="20dp"/>
+
+
+    <EditText
         android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

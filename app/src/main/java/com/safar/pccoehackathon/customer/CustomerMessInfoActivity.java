@@ -21,7 +21,7 @@ public class CustomerMessInfoActivity extends AppCompatActivity {
     private String email;
     private FirebaseFirestore firebaseFirestore;
     private LinearLayout llData;
-    private TextView tvMessName, tvLocation, tvPhoneNumber;
+    private TextView tvMessName, tvLocation, tvPhoneNumber, tvEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class CustomerMessInfoActivity extends AppCompatActivity {
         tvMessName = findViewById(R.id.tvMessName);
         tvLocation = findViewById(R.id.tvLocation);
         tvPhoneNumber = findViewById(R.id.tvPhoneNumber);
+        tvEmail = findViewById(R.id.tvEmail);
 
         llData = findViewById(R.id.llData);
 
@@ -145,10 +146,12 @@ public class CustomerMessInfoActivity extends AppCompatActivity {
                         String messName = value.getString("messname");
                         String location = value.getString("location");
                         String phoneNumber = value.getString("ownerphone");
+                        String email = value.getString("email");
 
                         tvMessName.setText(messName);
                         tvLocation.setText(location);
                         tvPhoneNumber.setText(phoneNumber);
+                        tvEmail.setText(email);
                     }
                 });
     }
