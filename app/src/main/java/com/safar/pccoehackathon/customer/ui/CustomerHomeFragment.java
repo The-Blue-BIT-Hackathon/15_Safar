@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.safar.pccoehackathon.R;
@@ -63,11 +64,32 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
                         throw new RuntimeException(e);
                     }
                     Address address = addressList.get(0);
-                    LatLng latLng = new com.google.android.gms.maps.model.LatLng(address.getLatitude(), address.getLongitude());
 
-                    Log.d("TAG", "hello -" + latLng);
+                    double centerLatitude = address.getLatitude();
+                    double centerLongitude = address.getLongitude();
+                    double radius = 10.0; // in kilometers
 
+                    GeoPoint center = new GeoPoint(centerLatitude, centerLongitude);
 
+                    binding.llData.removeAllViews();
+
+                    firebaseFirestore
+                            .collection("Owner")
+                            .orderBy("geo_pointLocation")
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                        Log.d("TAG", "onSuccess: "+document);
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
                 }
                 return false;
             }

@@ -1,8 +1,11 @@
 package com.safar.pccoehackathon;
 
+import com.google.firebase.firestore.GeoPoint;
+
 public class UserModel {
     private String id, name, messname, ownerphone, upi, email, location, totalCustomer, remainingPayment, monthlyPrice;
-    private double lat, lang;
+
+    GeoPoint geo_pointLocation;
 
     public UserModel(String name, String messname, String ownerphone) {
         this.name = name;
@@ -27,7 +30,7 @@ public class UserModel {
         this.remainingPayment = remainingPayment;
     }
 
-    public UserModel(String id, String name, String messname, String ownerphone, String upi, String email, String monthlyPrice, String location, double lat, double lang) {
+    public UserModel(String id, String name, String messname, String ownerphone, String upi, String email, String monthlyPrice, String location, GeoPoint geo_pointLocation) {
         this.name = name;
         this.id = id;
         this.messname = messname;
@@ -38,24 +41,15 @@ public class UserModel {
         this.remainingPayment = "0";
         this.monthlyPrice = monthlyPrice;
         this.location = location;
-        this.lat = lat;
-        this.lang = lang;
+        this.geo_pointLocation = geo_pointLocation;
     }
 
-    public double getLat() {
-        return lat;
+    public GeoPoint getGeo_pointLocation() {
+        return geo_pointLocation;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLang() {
-        return lang;
-    }
-
-    public void setLang(double lang) {
-        this.lang = lang;
+    public void setGeo_pointLocation(GeoPoint geo_pointLocation) {
+        this.geo_pointLocation = geo_pointLocation;
     }
 
     public String getLocation() {

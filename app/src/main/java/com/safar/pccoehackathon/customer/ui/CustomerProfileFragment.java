@@ -39,7 +39,6 @@ public class CustomerProfileFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     private FirebaseAuth firebaseAuth;
-
     private FirebaseFirestore firebaseFirestore;
 
     String GOOGLE_PAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";

@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -229,6 +230,8 @@ public class CustomerMessInfoActivity extends AppCompatActivity {
     }
 
     void upiPaymentCheck(String data) {
+
+        Log.d("TAG", "upiPaymentCheck: "+data);
         String str = data;
         String payment_cancel = "";
         String status = "";

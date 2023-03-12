@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.safar.pccoehackathon.databinding.ActivityOwnerSignUpBinding;
 
 import java.io.IOException;
@@ -42,7 +43,6 @@ public class OwnerSignUpActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseFirestore firebaseFirestore;
     FusedLocationProviderClient fusedLocationProviderClient;
-
     double lat, lang;
     private final static int REQUEST_CODE=100;
     @Override
@@ -149,10 +149,11 @@ public class OwnerSignUpActivity extends AppCompatActivity {
                                 public void onSuccess(AuthResult authResult) {
                                     Intent intent = new Intent(OwnerSignUpActivity.this, LoginActivity.class);
 
+                                    GeoPoint geo_pointLocation = new GeoPoint(lat, lang);
 
                                     firebaseFirestore.collection("Owner")
                                             .document(email)
-                                            .set(new UserModel(id, name, messname, ownerphone, upi, email, monthlyPrice, location, lat, lang));
+                                            .set(new UserModel(id, name, messname, ownerphone, upi, email, monthlyPrice, location, geo_pointLocation));
 
                                     //(String id, String name, String messname, String ownerphone, String upi, String email, String monthlyPrice, String location, String lat, String lang)
 
