@@ -148,9 +148,7 @@
                         android:background="@drawable/editext_drawable"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="Select Applicable Allergies"
-                        android:padding="16dp"
-
-                        >
+                        android:padding="16dp">
 
                         <AutoCompleteTextView
                             android:id="@+id/actvAllergies"
@@ -159,8 +157,9 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-
                 </LinearLayout>
+
+
 
                 <CheckBox
                     android:id="@+id/cbGlutenFree"

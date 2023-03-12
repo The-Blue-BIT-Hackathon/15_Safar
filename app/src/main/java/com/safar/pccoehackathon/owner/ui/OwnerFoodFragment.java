@@ -1,15 +1,18 @@
 package com.safar.pccoehackathon.owner.ui;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +24,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -40,6 +42,13 @@ public class OwnerFoodFragment extends Fragment {
     private Dialog dialog;
     private FirebaseAuth firebaseAuth;
 
+    String[] foodtypeitem = {"Veg","Non-Veg","Veg / Nog-Veg"};
+    String[] foodallergies = {"throat","mutton","chapati"};
+
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
+    ArrayAdapter<String> adapterItems1;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentOwnerFoodBinding.inflate(getLayoutInflater());
@@ -49,6 +58,7 @@ public class OwnerFoodFragment extends Fragment {
 
         displayPlate();
 
+
         binding.fabAddPlate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +67,11 @@ public class OwnerFoodFragment extends Fragment {
                 dialog.setContentView(R.layout.owner_food_new_layout);
                 dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+
+
                 EditText etPlateName, etPlatePrice, etContents;
                 AutoCompleteTextView actvPlateType, actvAllergies;
+                ImageView upload_img;
                 CheckBox cbGlutenFree;
                 Button btnAddDish;
 
@@ -72,6 +85,31 @@ public class OwnerFoodFragment extends Fragment {
                 cbGlutenFree = dialog.findViewById(R.id.cbGlutenFree);
 
                 btnAddDish = dialog.findViewById(R.id.btnAddDish);
+
+
+
+                autoCompleteTextView = dialog.findViewById(R.id.actvPlateType);
+                adapterItems = new ArrayAdapter<String>(getActivity(),R.layout.list_item_1, foodtypeitem);
+                autoCompleteTextView.setAdapter(adapterItems);
+
+                autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String item = adapterView.getItemAtPosition(i).toString();
+                    }
+         });
+
+                autoCompleteTextView = dialog.findViewById(R.id.actvAllergies);
+                adapterItems1 = new ArrayAdapter<String>(getActivity(),R.layout.list_item_1, foodallergies);
+                autoCompleteTextView.setAdapter(adapterItems1);
+
+                autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String item = adapterView.getItemAtPosition(i).toString();
+                    }
+                });
+
 
                 btnAddDish.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -340,4 +378,6 @@ public class OwnerFoodFragment extends Fragment {
                     }
                 });
     }
+
+
 }
