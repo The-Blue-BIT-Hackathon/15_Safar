@@ -123,9 +123,34 @@ public class SignUpCustomer extends AppCompatActivity {
                 String password = binding.etpassword.getText().toString();
 
 
-                if(name.isEmpty() || customerphone.isEmpty() || email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(SignUpCustomer.this, "Please enter complete information", Toast.LENGTH_LONG).show();
-                }else{
+                if (binding.etname.getText().toString().trim().isEmpty())
+                {
+                    binding.etname.setError("Please Enter Name");
+                } else if (binding.etphone.getText().toString().trim().isEmpty())
+                {
+                    binding.etphone.setError("Please Enter Mess name");
+                }
+                else if(binding.etphone.getText().length()!=10)
+                {
+                    Toast.makeText(SignUpCustomer.this, "Enter valid Mobile number", Toast.LENGTH_SHORT).show();
+                }
+                else if (binding.etemail.getText().toString().trim().isEmpty()) {
+                    binding.etemail.setError("Please Enter email");
+                }
+                else if (binding.etpassword.getText().toString().trim().isEmpty())
+                {
+                    binding.etpassword.setError("Please Enter password");
+                }
+                else if(binding.etpassword.getText().length()<6)
+                {
+                    binding.etpassword.setError("Password must be greater than 6 character");
+                }
+                else if(binding.actvPreference.getText().toString().isEmpty())
+                {
+                    Toast.makeText(SignUpCustomer.this, "Select location first", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
                     progressDialog.show();
                     auth.createUserWithEmailAndPassword(email,password)
                             .addOnSuccessListener(new OnSuccessListener<AuthResult>() {

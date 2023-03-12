@@ -50,6 +50,10 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Please wait loading");
 
 
+
+
+
+
         binding.etemail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -90,9 +94,20 @@ public class LoginActivity extends AppCompatActivity {
                 String email = binding.etemail.getText().toString().trim();
                 String password = binding.etpassword.getText().toString().trim();
 
-                progressDialog.show();
 
-                signInWithEmailAndPassword(email, password);
+                if(binding.etemail.getText().toString().trim().isEmpty())
+                {
+                    binding.etemail.setError("Please Enter Email");
+                }
+                else if(binding.etpassword.getText().toString().trim().isEmpty())
+                {
+                    binding.etemail.setError("Please Enter Password");
+                }
+                else
+                {
+                    progressDialog.show();
+                    signInWithEmailAndPassword(email, password);
+                }
             }
         });
 
@@ -102,20 +117,28 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String email = binding.etemail.getText().toString();
-                auth.sendPasswordResetEmail(email)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(LoginActivity.this, "Email Send", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                if(binding.etemail.getText().toString().trim().isEmpty())
+                {
+                    Toast.makeText(LoginActivity.this, "Please enter email first", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    auth.sendPasswordResetEmail(email)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(LoginActivity.this, "Email Send", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            }
-                        });
+                                }
+                            });
+                }
+
             }
         });
 
