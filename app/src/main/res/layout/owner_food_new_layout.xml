@@ -148,6 +148,7 @@
                         android:background="@drawable/editext_drawable"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="Select Applicable Allergies"
+                        android:visibility="gone"
                         android:padding="16dp">
 
                         <AutoCompleteTextView
