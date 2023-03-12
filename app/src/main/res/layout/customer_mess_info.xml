@@ -73,6 +73,28 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_semibold"
+                            android:text="UPI -"
+                            android:textAlignment="textStart" />
+
+                        <TextView
+                            android:id="@+id/tvUPI"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textAlignment="textStart" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
                             android:text="Email -"
                             android:textAlignment="textStart" />
 
@@ -106,13 +128,9 @@
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_medium"
                             android:textAlignment="textStart" />
-
                     </LinearLayout>
 
-
-
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -123,13 +141,19 @@
                 android:layout_below="@id/relLayout1"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/btnMakePayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="Make Payment" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
                     android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="Dishes"
                     android:textSize="17dp" />
@@ -144,19 +168,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical" />
 
 
                 </androidx.core.widget.NestedScrollView>
-
-
-                <Button
-                    android:id="@+id/btnMakePayment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/card_bg"
-                    android:text="Make Payment" />
 
             </LinearLayout>
 
