@@ -27,10 +27,12 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.safar.pccoehackathon.R;
 import com.safar.pccoehackathon.customer.CustomerMessInfoActivity;
+import com.safar.pccoehackathon.customer.GeoFirestoreUtils;
 import com.safar.pccoehackathon.databinding.FragmentHomeBinding;
 
 import java.io.IOException;
@@ -75,21 +77,19 @@ public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback
 
                     firebaseFirestore
                             .collection("Owner")
-                            .orderBy("geo_pointLocation")
+                            .orderBy("geo_pointLocation", Query.Direction.ASCENDING)
+                            .whereGreaterThan("geo_pointLocation", GeoFirestoreUtils.getGeoPointAtLocation(center, radius))
+                            .whereLessThan("geo_pointLocation", GeoFirestoreUtils.getGeoPointAtLocation(center, radius))
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                        Log.d("TAG", "onSuccess: "+document);
+                                        Log.d("TAG", "onSuccess: "+document.get("messname"));
                                     }
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                }
                             });
+
                 }
                 return false;
             }
