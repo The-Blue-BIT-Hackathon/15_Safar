@@ -62,6 +62,7 @@ public class OwnerProfileFragment extends Fragment {
             public void onClick(View view) {
                 firebaseAuth.signOut();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
             }
         });
 
