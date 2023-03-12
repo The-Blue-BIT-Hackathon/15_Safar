@@ -187,7 +187,7 @@ public class OwnerSignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                 getLastLocation();
+                getLastLocation();
 
             }
         });
