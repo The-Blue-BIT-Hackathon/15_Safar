@@ -63,16 +63,6 @@ public class CustomerProfileFragment extends Fragment {
             }
         });
 
-
-        binding.btnmakepayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                payUsingUpi();
-
-            }
-        });
-
         binding.btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,19 +158,12 @@ public class CustomerProfileFragment extends Fragment {
 
     private void payUsingUpi() {
 
-
         Uri uri =
                 new Uri.Builder()
                         .scheme("upi")
                         .authority("pay")
                         .appendQueryParameter("pa", "aheryash2004@okicici")
                         .appendQueryParameter("pn", "Yash Sandip Aher")
-//                                .appendQueryParameter("mc", "your-merchant-code")
-//                                .appendQueryParameter("tr", "your-transaction-ref-id")
-//                                .appendQueryParameter("tn", "your-transaction-note")
-//                                .appendQueryParameter("am", "your-order-amount")
-//                                .appendQueryParameter("cu", "INR")
-//                                .appendQueryParameter("url", "your-transaction-url")
                         .build();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(uri);
@@ -220,7 +203,6 @@ public class CustomerProfileFragment extends Fragment {
         }
 
     }
-
 
     void upiPaymentCheck(String data) {
         String str = data;
