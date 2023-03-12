@@ -154,17 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:orientation="vertical" >
-
-            <include layout="@layout/activity_layout_customer_mess_container"/>
-            <include layout="@layout/activity_layout_customer_mess_container"/>
-            <include layout="@layout/activity_layout_customer_mess_container"/>
-            <include layout="@layout/activity_layout_customer_mess_container"/>
-            <include layout="@layout/activity_layout_customer_mess_container"/>
-            <include layout="@layout/activity_layout_customer_mess_container"/>
-
-
-        </LinearLayout>
+            android:orientation="vertical" />
 
 
     </androidx.core.widget.NestedScrollView>

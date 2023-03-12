@@ -37,7 +37,6 @@ public class OwnerFoodFragment extends Fragment {
 
     private FragmentOwnerFoodBinding binding;
     private FirebaseFirestore firebaseFirestore;
-
     private Dialog dialog;
     private FirebaseAuth firebaseAuth;
 
@@ -159,8 +158,6 @@ public class OwnerFoodFragment extends Fragment {
             TextView tvAllergies = binding.llData.getChildAt(i).findViewById(R.id.tvAllergies);
             TextView tvGluttenFree = binding.llData.getChildAt(i).findViewById(R.id.tvGluttenFree);
             TextView tvAvailable = binding.llData.getChildAt(i).findViewById(R.id.tvAvailable);
-
-            Log.d("TAG", "updatePlate: "+type+allergies);
 
 
             if (tvID.getText().toString().trim().equals(id)) {
