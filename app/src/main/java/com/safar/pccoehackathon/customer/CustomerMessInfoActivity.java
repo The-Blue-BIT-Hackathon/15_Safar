@@ -73,6 +73,7 @@ public class CustomerMessInfoActivity extends AppCompatActivity {
                 .collection("Owner")
                 .document(email)
                 .collection("plates")
+                .whereEqualTo("available","Yes")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
