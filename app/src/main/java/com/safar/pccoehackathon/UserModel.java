@@ -1,7 +1,8 @@
 package com.safar.pccoehackathon;
 
 public class UserModel {
-    private String id, name, messname, ownerphone, upi, email, location, totalCustomer, remainingPayment, monthlyPrice, lat, lang;
+    private String id, name, messname, ownerphone, upi, email, location, totalCustomer, remainingPayment, monthlyPrice;
+    private double lat, lang;
 
     public UserModel(String name, String messname, String ownerphone) {
         this.name = name;
@@ -26,7 +27,7 @@ public class UserModel {
         this.remainingPayment = remainingPayment;
     }
 
-    public UserModel(String id, String name, String messname, String ownerphone, String upi, String email, String monthlyPrice, String location, String lat, String lang) {
+    public UserModel(String id, String name, String messname, String ownerphone, String upi, String email, String monthlyPrice, String location, double lat, double lang) {
         this.name = name;
         this.id = id;
         this.messname = messname;
@@ -40,25 +41,27 @@ public class UserModel {
         this.lat = lat;
         this.lang = lang;
     }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLang() {
+        return lang;
+    }
+
+    public void setLang(double lang) {
+        this.lang = lang;
+    }
+
     public String getLocation() {
         return location;
     }
 
-    public String getLat() {
-        return lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
 
     public String getMonthlyPrice() {
         return monthlyPrice;

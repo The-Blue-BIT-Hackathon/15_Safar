@@ -1,6 +1,8 @@
 package com.safar.pccoehackathon.customer.ui;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +14,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,7 +29,10 @@ import com.safar.pccoehackathon.R;
 import com.safar.pccoehackathon.customer.CustomerMessInfoActivity;
 import com.safar.pccoehackathon.databinding.FragmentHomeBinding;
 
-public class CustomerHomeFragment extends Fragment {
+import java.io.IOException;
+import java.util.List;
+
+public class CustomerHomeFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentHomeBinding binding;
 
@@ -37,13 +46,47 @@ public class CustomerHomeFragment extends Fragment {
 
         getAllOwners();
 
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                String location = binding.searchView.getQuery().toString();
+                List<Address> addressList = null;
+
+                if (location != null || !location.equals("")) {
+                    Geocoder geocoder = new Geocoder(getActivity());
+                    try {
+                        addressList = geocoder.getFromLocationName(location, 1);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Address address = addressList.get(0);
+                    LatLng latLng = new com.google.android.gms.maps.model.LatLng(address.getLatitude(), address.getLongitude());
+
+                    Log.d("TAG", "hello -" + latLng);
+
+
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        getAllOwners();
+
         return binding.getRoot();
 
     }
 
+
     private void getAllOwners() {
 
-        Log.d("TAG", "getAllOwners: "+"hi");
+        Log.d("TAG", "getAllOwners: " + "hi");
         firebaseFirestore
                 .collection("Owner")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -51,7 +94,7 @@ public class CustomerHomeFragment extends Fragment {
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             String id = dc.getDocument().getId();
-                            Log.d("TAG", "onEvent: "+id);
+                            Log.d("TAG", "onEvent: " + id);
                             String messname = dc.getDocument().getData().get("messname").toString();
                             String location = dc.getDocument().getData().get("location").toString();
                             String monthlyPrice = dc.getDocument().getData().get("monthlyPrice").toString();
@@ -86,5 +129,10 @@ public class CustomerHomeFragment extends Fragment {
         });
 
         binding.llData.addView(messView);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
     }
 }

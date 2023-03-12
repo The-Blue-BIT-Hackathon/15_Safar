@@ -28,7 +28,7 @@ public class OwnerMainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.owner_navigation_customer, R.id.owner_navigation_food, R.id.owner_navigation_home, R.id.owner_navigation_profile)
+                R.id.owner_navigation_customer, R.id.owner_navigation_food, R.id.owner_navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_owner_main);
         NavigationUI.setupWithNavController(binding.navView, navController);

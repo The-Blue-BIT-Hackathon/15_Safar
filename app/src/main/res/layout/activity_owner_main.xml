@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="@color/orange"
         app:itemTextColor="@color/black"
         app:menu="@menu/owner_bottom_nav_menu" />
 
